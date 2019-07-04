@@ -7,9 +7,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from datetime import datetime
 from django.views.generic import ListView
-from .forms import EmailPostForm, CommentFrom
+from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 from .models import Post, Comment
+from django import forms
 
 
 def post_share(request, post_id):
@@ -64,18 +65,19 @@ def post_detail(request, year, month, day, post):
     comments = post.comments.filter(active=True)
 
     new_comment = None
+
     if request.method == 'POST':
         # A comment was posted
-        comment_form = CommentFrom(data=request.POST)
+        comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-            # Create comment object but don't save to database yet
+            # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
-            # Assaign the current post to the comment
+            # Assign the current post to the comment
             new_comment.post = post
             # Save the comment to the database
             new_comment.save()
     else:
-        comment_form = CommentFrom()
-    return render(request, 'blog/post/detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
+        comment_form = CommentForm()
+        return render(request, 'blog/post/detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
 
 # Create your views here.

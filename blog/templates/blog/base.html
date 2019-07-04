@@ -3,13 +3,16 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
-  <!-- <link href="blog.css" rel="stylesheet"> -->
-  <link href="{% static "blog.css" %}" rel="stylesheet">
+  <link href="{% static "blog/blog.css" %}" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div id="content">
     {% block content %}
     {% endblock %}
+  </div>
+  <div id="sidebar">
+    <h2>My blog</h2>
+    <p>This is my sidebar in blog.</p>
   </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 {% block title %}Share a post{% endblock %}
 {% block content %}
+  <!--  -->
   {% if sent %}
     <h1>E-mail successfully sent</h1>
     <p>
@@ -15,7 +16,7 @@
       {% for field in form %}
       {% endfor %}
       <input type="submit" value="Send e-mail">
-      <!-- <input type="hidden" name="csrfmiddlewaretoken" value="26JjKo2lcEtYkGoV9z4XmJIEHLXN5LDR"> -->
     </form>
   {% endif %}
+  <!--  -->
 {% endblock %}
