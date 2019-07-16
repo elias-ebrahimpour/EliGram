@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from django.core.validators import RegexValidator
+from django.utils.translation import gettext_lazy as _
 
 
 class PublishedManager(models.Manager):
